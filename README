@@ -6,23 +6,27 @@ telegram bot project to help download videos from facebook
 
 ## How to run in local machine
 
-    1. You must have a python program language installation, if not please install it first based on the operating system you are using.
+    1. You must have a python program language installation,
+    if not please install it first based on the operating system you are using.
 
     2. clone or download this repository 
 
-    3. create api_id and api_hash on the telegram website: my.telegram.org
+    3. create api_id and api_hash on the telegram website: https://my.telegram.org
 
     4. rename the .env-example file to .env
 
-    5. input api_id and api_hash into the .env file according to the variables that have been specified
+    5. input api_id and api_hash into the .env file
+    according to the variables that have been specified
 
     6. create telegram bot in botFather https://t.me/BotFather
 
     7. put the bot token from botFather into the .env file
 
-    8. take your facebook account cookie and enter it into the .env file according to the variables that have been determined.
+    8. take your facebook account cookie and enter it into the .env file
+    according to the variables that have been determined.
 
-    9. install the required libraries with the command "python3 -m pip install -r requiremenst.txt"
+    9.  install the required libraries with the command
+    "python3 -m pip install -r requiremenst.txt"
 
     10. then run the program with the command "python3 main.py"
 

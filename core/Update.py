@@ -38,7 +38,7 @@ def update(data):
     if text.startswith('/about'):
         sendMessage(chat_id=userid, message=aboutText, message_id=msgid)
         return
-    if text.startswith('http') and 'facebook.com' in text or text.startswith('http') and 'fb.watch' in text:
+    if text.startswith('http') and 'facebook.com' in text or text.startswith('http') and 'fb.watch' in text and '%' not in text:
         dl = FacebookDownloader()
         first = dl.alpha_version(url=text)
         # print(first)

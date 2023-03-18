@@ -25,13 +25,10 @@ def poling():
             update(data['result'][0])
             print("~" * 60)
         except KeyError as e:
-            print(req.text)
+            print(data['result'][0])
+            print('~' * 60)
             continue
-        except requests.exceptions.ConnectionError:
-            print("Connection Error")
-            print("=" * 60)
-            continue
-        except requests.exceptions.ReadTimeout:
-            print("Read Timeout")
-            print("=" * 60)
+        except (requests.exceptions.ConnectionError, requests.exceptions.ReadTimeout):
+            print("- Connection Error")
+            print('~' * 60)
             continue

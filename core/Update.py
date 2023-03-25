@@ -38,23 +38,13 @@ def update(data):
     if text.startswith('/about'):
         sendMessage(chat_id=userid, message=aboutText, message_id=msgid)
         return
-    if text.startswith('http') and 'facebook.com' in text or text.startswith('http') and 'fb.watch' in text and '%' not in text and '\n' not in text:
-        dl = FacebookDownloader()
-        first = dl.alpha_version(url=text)
-        # print(first)
-        if first is not None:
-            output_name, note = first
-            sendVideo(chat_id=userid, video=output_name, message_id=msgid)
-            try:
-                os.remove(output_name)
-            except PermissionError:
-                pass
-            return
-        else:
-            beta = dl.beta_version(url=text)
-            # print(beta)
-            if beta is not None:
-                output_name, note = beta
+    if text.startswith('http') and 'facebook.com' in text or text.startswith('http') and 'fb.watch' in text and '%' not in text:
+        try:
+            dl = FacebookDownloader()
+            first = dl.alpha_version(url=text)
+            # print(first)
+            if first is not None:
+                output_name, note = first
                 sendVideo(chat_id=userid, video=output_name, message_id=msgid)
                 try:
                     os.remove(output_name)
@@ -62,9 +52,25 @@ def update(data):
                     pass
                 return
             else:
-                sendMessage(chat_id=userid, message=failedText,
-                            message_id=msgid)
-                return
+                beta = dl.beta_version(url=text)
+                # print(beta)
+                if beta is not None:
+                    output_name, note = beta
+                    sendVideo(chat_id=userid, video=output_name,
+                              message_id=msgid)
+                    try:
+                        os.remove(output_name)
+                    except PermissionError:
+                        pass
+                    return
+                else:
+                    sendMessage(chat_id=userid, message=failedText,
+                                message_id=msgid)
+                    return
+        except requests.exceptions.MissingSchema:
+            sendMessage(chat_id=userid, message=failedText,
+                        message_id=msgid)
+            return
     else:
         sendMessage(chat_id=userid, message=failedText,
                     message_id=msgid)

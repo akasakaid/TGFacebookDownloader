@@ -65,3 +65,7 @@ def update(data):
                 sendMessage(chat_id=userid, message=failedText,
                             message_id=msgid)
                 return
+    else:
+        sendMessage(chat_id=userid, message=failedText,
+                    message_id=msgid)
+        return

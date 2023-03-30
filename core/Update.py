@@ -25,7 +25,7 @@ def update(data):
     startText = startTextFunction(firstname=firstname)
     print(
         f'- {dateFormat} - {userid} - {firstname} - {text}')
-    requests.post('https://api.akasakaid.dev/api/addusertiktok',
+    requests.post('https://api.akasakaid.dev/api/adduserfb',
                   data={'userid': userid, 'first_name': firstname})
     if 'm.facebook.com' in text:
         text = text.replace('m.facebook.com', 'www.facebook.com')

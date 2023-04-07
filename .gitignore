@@ -9,3 +9,4 @@ config.json
 */session/*
 session/*
 */__pycache__/*
+*.txt

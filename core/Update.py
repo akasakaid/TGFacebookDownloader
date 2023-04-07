@@ -64,12 +64,26 @@ def update(data):
                         pass
                     return
                 else:
-                    sendMessage(chat_id=userid, message=failedText,
-                                message_id=msgid)
-                    return
+                    greed = dl.greed(url=text)
+                    if greed is not None:
+                        output_name, note = greed
+                        sendVideo(chat_id=userid, video=output_name,
+                                  message_id=msgid)
+                        try:
+                            os.remove(output_name)
+                        except PermissionError:
+                            pass
+                        return
+                    else:
+                        sendMessage(chat_id=userid, message=failedText,
+                                    message_id=msgid)
+                        return
         except requests.exceptions.MissingSchema:
             sendMessage(chat_id=userid, message=failedText,
                         message_id=msgid)
+            return
+        except requests.exceptions.InvalidSchema:
+            sendMessage(chat_id=userid, message=failedText, message_id=msgid)
             return
     else:
         sendMessage(chat_id=userid, message=failedText,

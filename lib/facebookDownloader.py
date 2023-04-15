@@ -147,17 +147,12 @@ class FacebookDownloader:
         open("hasil.html", "w", encoding='utf-8').write(req.text)
         urlSd = re.findall('"playable_url":"(.*?)"', req.text)
         urlHd = re.findall('"playable_url_quality_hd":"(.*?)"', req.text)
-        # open("hasil.txt", "a+").write(allSdUrl[0] + '\n')
-        # open("hasil.txt", "a+").write(allHdUrl[0] + '\n')
         if len(urlSd) == 0 and len(urlHd) == 0:
-            # if urlSd is None and urlHd is None:
             return None
         if len(urlSd) != 0:
-            # if urlSd is not None:
             urlDl = urlSd[0]
             note = "SD QUALITY"
         if len(urlHd) != 0:
-            # if urlHd is not None:
             urlDl = urlHd[0]
             note = "HD QUALITY"
         # print(urlDl)
